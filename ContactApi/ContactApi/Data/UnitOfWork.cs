@@ -4,10 +4,13 @@ namespace ContactApi.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
+        private readonly MockDbContext _dbContext;
+
         // Would inject DbContext here
-        public UnitOfWork() {
+        public UnitOfWork(MockDbContext dbContext) {
             // New up repositories with injected context
-            Contacts = new ContactRepository();
+            _dbContext = dbContext;
+            Contacts = new ContactRepository(dbContext);
         }
 
         public IContactRepository Contacts { get; private set; }

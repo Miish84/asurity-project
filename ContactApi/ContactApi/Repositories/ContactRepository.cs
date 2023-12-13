@@ -4,8 +4,10 @@ namespace ContactApi.Repositories
 {
     public class ContactRepository: IContactRepository
     {
-
-        public ContactRepository() { }
+        private readonly MockDbContext _dbContext;
+        public ContactRepository(MockDbContext dbContext) {
+            _dbContext = dbContext;
+        }
 
         public bool Create(Contact contact)
         {
@@ -19,7 +21,7 @@ namespace ContactApi.Repositories
 
         public IEnumerable<Contact> Get()
         {
-            throw new NotImplementedException();
+            return _dbContext.Contacts.ToList();
         }
 
         public Contact GetById(int id)
