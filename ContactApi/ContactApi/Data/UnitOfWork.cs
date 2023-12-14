@@ -4,7 +4,7 @@ namespace ContactApi.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly MockDbContext _dbContext;
+        private MockDbContext _dbContext;
 
         // Would inject DbContext here
         public UnitOfWork(MockDbContext dbContext) {
@@ -17,12 +17,13 @@ namespace ContactApi.Data
 
         public int Commit()
         {
-            throw new NotImplementedException();
+            // MJI todo
+            return 1;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _dbContext = null;
         }
     }
 }

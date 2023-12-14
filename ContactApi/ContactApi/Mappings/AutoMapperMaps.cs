@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
+using ContactApi.Data.Models;
 
 namespace ContactApi.Mappings
 {
     public class AutoMapperMaps : Profile
     {
         public AutoMapperMaps() { 
-            CreateMap<View.Contact, Domain.Models.Contact>();
-            CreateMap<Domain.Models.Contact, View.Contact>();
-            CreateMap<Domain.Models.Contact, Data.Contact>();
-            CreateMap<Data.Contact, Domain.Models.Contact>();
+            CreateMap<Dtos.Contact, Domain.Models.Contact>();
+            CreateMap<Domain.Models.Contact, Dtos.Contact>();
+            CreateMap<Domain.Models.Contact, Contact>();
+            CreateMap<Contact, Domain.Models.Contact>();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace ContactApi.Data
+﻿using ContactApi.Data.Models;
+
+namespace ContactApi.Data
 {
     public class MockDbContext
     {
@@ -9,11 +11,11 @@
             new(4, "Ned", "Baker", "ned.baker@gmail.com", "8288 Squire Cir", "Birmingham", "Alabama", 35210),
         }.AsQueryable();
 
-        public IQueryable<Contact> Contacts { get { return _contacts; } }
+        public IQueryable<Contact> Contacts { get { return _contacts.Select(item => (Contact)item.Clone()); } private set { _contacts = value; } }
 
-        public static bool Save()
+        public bool Save(IQueryable<Contact> updatedContacts)
         {
-            // Update or rollback Contacts
+            _contacts = updatedContacts;
             return true;
         }
     }

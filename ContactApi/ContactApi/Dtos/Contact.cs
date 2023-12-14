@@ -1,10 +1,9 @@
-﻿namespace ContactApi.Domain.Models
+﻿namespace ContactApi.Dtos
 {
     public class Contact
     {
-        public int Id { get; set; }
         public Guid Uuid { get; set; }
-        public   string FirstName { get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Street { get; set; }

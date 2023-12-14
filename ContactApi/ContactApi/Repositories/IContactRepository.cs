@@ -1,14 +1,13 @@
-﻿using ContactApi.Data;
+﻿using ContactApi.Data.Models;
 
 namespace ContactApi.Repositories
 {
     public interface IContactRepository
     {
-        Contact GetById(int id);
         Contact GetByUuid(Guid uuid);
         IEnumerable<Contact> Get();
         bool Create(Contact contact);
         bool Update(Contact contact);
-        bool Delete(int id);
+        bool Delete(Guid uuid);
     }
 }

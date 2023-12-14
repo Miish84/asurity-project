@@ -1,8 +1,11 @@
-﻿namespace ContactApi.Data
+﻿using Newtonsoft.Json;
+
+namespace ContactApi.Data.Models
 {
-    public class Contact
+    public class Contact : ICloneable
     {
-        public Contact(int id, string firstName, string lastName, string email, string street, string city, string state, int zip) {
+        public Contact(int id, string firstName, string lastName, string email, string street, string city, string state, int zip)
+        {
             Id = id;
             FirstName = firstName;
             LastName = lastName;
@@ -23,5 +26,11 @@
         public string City { get; }
         public string State { get; }
         public int Zip { get; }
+
+        public object Clone()
+        {
+            var serialized = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Contact>(serialized);
+        }
     }
 }
