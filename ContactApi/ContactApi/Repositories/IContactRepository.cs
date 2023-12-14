@@ -8,6 +8,6 @@ namespace ContactApi.Repositories
         IEnumerable<Contact> Get();
         bool Create(Contact contact);
         bool Update(Contact contact);
-        bool Delete(Guid uuid);
+        bool Delete(string uuid);
     }
 }

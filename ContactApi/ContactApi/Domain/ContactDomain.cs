@@ -31,13 +31,14 @@ namespace ContactApi.Domain
 
         public void Delete(string uuid)
         {
-            var guid = new Guid(uuid);
-            var success = _unitOfWork.Contacts.Delete(guid);
+            var success = _unitOfWork.Contacts.Delete(uuid);
 
             if(!success)
             {
                 throw new Exception("Unable to delete contact");
             }
+
+            _unitOfWork.Commit();
         }
     }
 }

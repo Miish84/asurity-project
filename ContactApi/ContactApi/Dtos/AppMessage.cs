@@ -2,18 +2,18 @@
 
 namespace ContactApi.Dtos
 {
-    public class AppMessage<T> where T : class
+    public class AppMessage
     {
-        private readonly HttpStatusCode code;
-        private readonly Exception exception;
-        private readonly string customMessage;
-        private readonly object payload;
+        public HttpStatusCode Code { get; set; }
+        public Type ExceptionType { get; set; }
+        public string CustomMessage { get; set; }
+        public object Payload { get; set; }
 
-        public AppMessage(HttpStatusCode code = HttpStatusCode.OK, string customMessage = "ok", Exception exception = null, T payload = null) {
-            this.code = code;
-            this.exception = exception;
-            this.customMessage = customMessage;
-            this.payload = payload;
+        public AppMessage(HttpStatusCode code = HttpStatusCode.OK, string customMessage = "ok", Type exceptionType = null, object payload = null) {
+            this.Code = code;
+            this.ExceptionType = exceptionType;
+            this.CustomMessage = customMessage;
+            this.Payload = payload;
         }
     }
 }

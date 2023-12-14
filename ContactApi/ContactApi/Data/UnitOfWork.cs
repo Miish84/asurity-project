@@ -17,7 +17,7 @@ namespace ContactApi.Data
 
         public int Commit()
         {
-            // MJI todo
+            _dbContext.Save();
             return 1;
         }
 

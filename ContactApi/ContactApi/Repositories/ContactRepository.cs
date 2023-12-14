@@ -21,10 +21,11 @@ namespace ContactApi.Repositories
             return contact;
         }
 
-        public bool Delete(Guid uuid)
+        public bool Delete(string uuid)
         {
-            var contacts = _dbContext.Contacts.Where(x => x.Uuid != uuid);
-            return _dbContext.Save(contacts);
+            var contacts = _dbContext.Contacts.Where(x => x.Uuid.ToString() != uuid).ToList();
+            _dbContext.QueueChanges(contacts);
+            return true;
         }
 
         public bool Create(Contact contact)

@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using ContactApi.Domain;
 using ContactApi.Dtos;
+using ContactApi.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ContactApi.Controllers
 {
+    [TypeFilter<CustomExceptionFilter>]
     [Route("api/[controller]")]
     [ApiController]
     public class ContactController : ControllerBase
@@ -20,25 +22,26 @@ namespace ContactApi.Controllers
         }
         // GET: api/<ContactController>
         [HttpGet]
-        public AppMessage<IEnumerable<Contact>> Get()
+        public AppMessage Get()
         {
             var contacts =_mapper.Map<IEnumerable<Contact>>(_contactDomain.Get());
-            return new AppMessage<IEnumerable<Contact>>(payload: contacts);
+            return new AppMessage(payload: contacts, customMessage: "Success!");
         }
 
         // GET api/<ContactController>/{uuid}
         [HttpGet("{uuid}")]
-        public AppMessage<Contact> Get(string uuid)
+        public AppMessage Get(string uuid)
         {
             var contact = _mapper.Map<Contact>(_contactDomain.GetByUuid(uuid));
-            return new AppMessage<Contact>(payload: contact);
+            return new AppMessage(payload: contact, customMessage: "Success!");
         }
 
         // DELETE api/<ContactController>/5
         [HttpDelete("{uuid}")]
-        public void Delete(string uuid)
+        public AppMessage Delete(string uuid)
         {
             _contactDomain.Delete(uuid);
+            return new AppMessage(customMessage: "Success!");
         }
 
         //// POST api/<ContactController>

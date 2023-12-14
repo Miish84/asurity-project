@@ -4,9 +4,10 @@ namespace ContactApi.Data.Models
 {
     public class Contact : ICloneable
     {
-        public Contact(int id, string firstName, string lastName, string email, string street, string city, string state, int zip)
+        public Contact(int id, Guid uuid, string firstName, string lastName, string email, string street, string city, string state, int zip)
         {
             Id = id;
+            Uuid = uuid;
             FirstName = firstName;
             LastName = lastName;
             Email = email;
@@ -14,7 +15,7 @@ namespace ContactApi.Data.Models
             City = city;
             State = state;
             Zip = zip;
-            Uuid = new Guid();
+            Uuid = uuid;
         }
 
         public int Id { get; }
@@ -31,6 +32,7 @@ namespace ContactApi.Data.Models
         {
             var serialized = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Contact>(serialized);
+
         }
     }
 }
