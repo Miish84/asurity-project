@@ -40,5 +40,37 @@ namespace ContactApi.Domain
 
             _unitOfWork.Commit();
         }
+
+        public IEnumerable<Models.Contact> Create(Models.Contact contact)
+        {
+            Contact dataContact = new Contact(_unitOfWork.Contacts.NextId(), contact.Uuid, contact.FirstName, contact.LastName, contact.Email, contact.Street, contact.City, contact.State, contact.Zip, contact.Frequency);
+            var success = _unitOfWork.Contacts.Create(dataContact);
+
+            if (!success)
+            {
+                throw new Exception("Unable to create contact");
+            }
+
+            _unitOfWork.Commit();
+
+            // Would not normally do this, but since I'm not working with an ORM this is a bit easier to manage
+            return Get();
+        }
+
+        public IEnumerable<Models.Contact> Update(Models.Contact contact)
+        {
+            Contact dataContact = _mapper.Map<Contact>(contact);
+            var success = _unitOfWork.Contacts.Update(dataContact);
+
+            if (!success)
+            {
+                throw new Exception("Unable to update contact");
+            }
+
+            _unitOfWork.Commit();
+
+            // Would not normally do this, but since I'm not working with an ORM this is a bit easier to manage
+            return Get();
+        }
     }
 }

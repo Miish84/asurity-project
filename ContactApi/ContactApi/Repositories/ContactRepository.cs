@@ -30,15 +30,27 @@ namespace ContactApi.Repositories
 
         public bool Create(Contact contact)
         {
-            throw new NotImplementedException();
+            var contacts = _dbContext.Contacts.ToList();
+            contacts.Add(contact);
+            _dbContext.QueueChanges(contacts);
+            return true;
         }
-
-
-
 
         public bool Update(Contact contact)
         {
-            throw new NotImplementedException();
+            var contacts = _dbContext.Contacts.ToList();
+            int index = contacts.FindIndex(c => c.Uuid.ToString() == contact.Uuid.ToString());
+            var dbContact = contacts[index];
+            contacts.RemoveAt(index);
+            contacts.Add(contact);
+            _dbContext.QueueChanges(contacts);
+            return true;
+        }
+
+        // Wouldn't normally need to do this, but since we're not dealing with a real db
+        public int NextId()
+        {
+            return _dbContext.Contacts.Count();
         }
     }
 }

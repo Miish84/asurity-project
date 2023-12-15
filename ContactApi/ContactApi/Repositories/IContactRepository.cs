@@ -9,5 +9,6 @@ namespace ContactApi.Repositories
         bool Create(Contact contact);
         bool Update(Contact contact);
         bool Delete(string uuid);
+        int NextId();
     }
 }

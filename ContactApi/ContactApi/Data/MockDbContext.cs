@@ -5,10 +5,10 @@ namespace ContactApi.Data
     public class MockDbContext
     {
         private static IQueryable<Contact> _contacts = new List<Contact> {
-            new(1, Guid.NewGuid(), "Tim", "Early", "tim.early@gmail.com", "111 Apple Rd", "Knoxville", "Tennessee", 37922),
-            new(2, Guid.NewGuid(), "Emil", "Abrhams", "emil.abrahms@gmail.com", "858 Count Ct", "Nashville", "Tennessee", 37828),
-            new(3, Guid.NewGuid(), "Lisa", "Early", "lisa.early@gmail.com", "111 Apple Rd", "Knoxville", "Tennessee", 37922),
-            new(4, Guid.NewGuid(), "Ned", "Baker", "ned.baker@gmail.com", "8288 Squire Cir", "Birmingham", "Alabama", 35210),
+            new(1, Guid.NewGuid(), "Tim", "Early", "tim.early@gmail.com", "111 Apple Rd", "Knoxville", "TN", 37922, 3),
+            new(2, Guid.NewGuid(), "Emil", "Abrhams", "emil.abrahms@gmail.com", "858 Count Ct", "Nashville", "TN", 37828, 1),
+            new(3, Guid.NewGuid(), "Lisa", "Early", "lisa.early@gmail.com", "111 Apple Rd", "Knoxville", "TN", 37922, 2),
+            new(4, Guid.NewGuid(), "Ned", "Baker", "ned.baker@gmail.com", "8288 Squire Cir", "Birmingham", "AL", 35210, 3),
         }.AsQueryable();
 
         private static IQueryable<Contact> _queuedChanges;

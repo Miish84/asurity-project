@@ -44,16 +44,22 @@ namespace ContactApi.Controllers
             return new AppMessage(customMessage: "Success!");
         }
 
-        //// POST api/<ContactController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
+        // POST api/<ContactController>
+        [HttpPost]
+        public AppMessage Post([FromBody] Contact contact)
+        {
+            var domainContact = _mapper.Map<Domain.Models.Contact>(contact);
+            var contacts = _contactDomain.Create(domainContact);
+            return new AppMessage(payload: contacts, customMessage: "Success!");
+        }
 
-        //// PUT api/<ContactController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
+        // PUT api/<ContactController>/5
+        [HttpPut("{uuid}")]
+        public AppMessage Put(string uuid, [FromBody] Contact contact)
+        {
+            var domainContact = _mapper.Map<Domain.Models.Contact>(contact);
+            var contacts = _contactDomain.Update(domainContact);
+            return new AppMessage(payload: contacts, customMessage: "Success!");
+        }
     }
 }
