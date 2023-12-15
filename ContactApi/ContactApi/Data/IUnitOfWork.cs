@@ -6,5 +6,6 @@ namespace ContactApi.Data
     {
         int Commit();
         IContactRepository Contacts { get; }
+        ILookupRepository Lookups { get; }
     }
 }

@@ -13,6 +13,8 @@ namespace ContactApi.Data
 
         private static IQueryable<Contact> _queuedChanges;
 
+        public IQueryable<State> States = State.States;
+        public IQueryable<ContactFrequency> ContactFrequencies = ContactFrequency.ContactFrequencies;
         public IQueryable<Contact> Contacts { get { return _contacts.Select(item => (Contact)item.Clone()); } private set { _contacts = value; } }
 
         public void QueueChanges(IEnumerable<Contact> updatedContacts)

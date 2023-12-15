@@ -11,9 +11,11 @@ namespace ContactApi.Data
             // New up repositories with injected context
             _dbContext = dbContext;
             Contacts = new ContactRepository(dbContext);
+            Lookups = new LookupRepository(dbContext);
         }
 
         public IContactRepository Contacts { get; private set; }
+        public ILookupRepository Lookups { get; private set; }
 
         public int Commit()
         {
